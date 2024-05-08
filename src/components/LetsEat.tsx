@@ -43,6 +43,11 @@ export const LetsEat: React.FC = () => {
     }
   };
 
+  const handleSubmit = () => {
+    findRecipes(input);
+    setInput('');
+  }
+
   return (
     <>
       <div className='input-container'>    
@@ -54,12 +59,11 @@ export const LetsEat: React.FC = () => {
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
               if (event.key === 'Enter') {
-                findRecipes(input)
-                setInput('')
+                handleSubmit()
               }
             }}
           />
-          <div className='search-icon' onClick={() => findRecipes(input)}>
+          <div className='search-icon' onClick={() => handleSubmit()}>
             <FontAwesomeIcon icon={faSearch} />
           </div>
         </div>
