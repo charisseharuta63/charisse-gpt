@@ -1,5 +1,11 @@
 .input-container {
-    margin-top: 20px;
+    margin: 20px 0;
+}
+
+.input-wrapper {
+    position: relative; 
+    display: flex;
+    align-items: center;
 }
 
 .input {
@@ -8,5 +14,29 @@
     border-radius: 5px;
     font-size: 16px;
     outline: none;
-    margin-bottom: 20px;
+    padding-right: 30px; 
 }
+
+.input:hover {
+    border: 1px solid #5bc0de;
+}
+
+.search-icon {
+    position: absolute;
+    right: 7px;
+    cursor: pointer;
+    color: #282c34;
+    font-size: 17px;
+}
+
+.recipe {
+    background-color: darkgray;
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../components/style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 interface Recipe {
   label: string;
@@ -7,6 +9,7 @@ interface Recipe {
 
 export const LetsEat: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [input, setInput] = useState('');
   const findRecipes = async (text: string) => {
     try {
         const endpoint = 'https://api.edamam.com/api/recipes/v2';
@@ -25,7 +28,7 @@ export const LetsEat: React.FC = () => {
         // };
 
         // Create the fetch request
-        const response = await fetch(`${endpoint}?${params}`)
+        await fetch(`${endpoint}?${params}`)
             .then(async response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -41,25 +44,33 @@ export const LetsEat: React.FC = () => {
   };
 
   return (
-    <div className='input-container'>      
-      <input
-        className='input'
-        type="text"
-        placeholder="Search Recipes!"
-        onKeyDown={(event) => {
-          if (event.key === 'Enter') {
-            findRecipes((event.target as HTMLInputElement).value);
-            (event.target as HTMLInputElement).value = '';
-          }
-        }}
-      />
-      {recipes.map((recipe, index) => {
-        return (
-          <div key={index}>
-            {recipe.label}
+    <>
+      <div className='input-container'>    
+        <div className='input-wrapper'>
+          <input
+            className='input'
+            type="text"
+            placeholder="Search Recipes!"
+            onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                findRecipes(input)
+                setInput('')
+              }
+            }}
+          />
+          <div className='search-icon' onClick={() => findRecipes(input)}>
+            <FontAwesomeIcon icon={faSearch} />
           </div>
-        )
-      })}
-    </div>
+        </div>
+        </div>
+        {recipes.map((recipe, index) => {
+          return (
+            <div key={index} className='recipe'>
+              {recipe.label}
+            </div>
+          )
+        })}
+    </>
   );
 };
