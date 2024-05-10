@@ -39,15 +39,26 @@
     margin-bottom: 25px;
 }
 
-.recipe {
-    background-color: darkgray;
-    padding: 10px;
-    margin: 0 10px;
-    border-radius: 8px;
+.recipe-container {
+    display: flex;
+    align-items: center;
     margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-}
-
+    .heart {
+        color: darkgray;
+        cursor: pointer
+    }
+    .heart-red {
+        color: red;
+        cursor: pointer
+    }
+    .recipe {
+        background-color: darkgray;
+        padding: 10px;
+        margin: 0 10px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+    }
+}    
